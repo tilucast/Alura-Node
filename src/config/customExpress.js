@@ -19,7 +19,18 @@ app.use(methodOverride((req, res) =>{
     }
 }))
 
+const sessionAuth = require('./sessionAuth')
+sessionAuth(app)
+
 const routes = require('../app/routes/routes')
 routes(app)
+
+app.use((req, res, next) =>{
+    return res.status(404).marko(require('../app/views/errors/404.marko'))
+})
+
+app.use((err, req, res, next) =>{
+    return res.status(500).marko(require('../app/views/errors/500.marko'))
+}) 
 
 module.exports = app

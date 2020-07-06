@@ -6,7 +6,7 @@ bookTable.addEventListener('click', (e) =>{
         
         try{
             let bookId = clickedElement.dataset.ref
-            fetch(`http://localhost:3001/livros/${bookId}`, {method: 'DELETE'})
+            fetch(`http://localhost:3000/livros/${bookId}`, {method: 'DELETE'})
             const tr = clickedElement.parentElement.parentElement
             tr.remove()
         }catch(err){

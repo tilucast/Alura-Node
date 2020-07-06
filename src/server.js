@@ -1,4 +1,5 @@
 const app = require('./config/customExpress')
+const port = process.env.PORT || 3000
 
-app.listen(3001, () => console.log(`servidor na porta 3001`))
+app.listen(port, () => console.log(`servidor na porta ${port}`))
 

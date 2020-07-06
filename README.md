@@ -1,8 +1,12 @@
 <h1>Node CRUD</h1>
+<img src="./img/1" align="center"></img>
+<img src="./img/2" align="center"></img>
+<img src="./img/3" align="center"></img>
+<img src="./img/4" align="center"></img>
 
 # Sobre o projeto
 
-É a parte 1 do curso de Node da Alura.
+Projeto final do curso de Node da Alura.
 É um CRUD básico, usando Node e <a href="https://markojs.com/">Marko.js</a>.
 Estamos usando <a href="https://www.sqlitetutorial.net/sqlite-nodejs/">Sqlite3</a> como banco de dados.
 Instrutor : <a href="https://github.com/gabrielleite">Gabriel Leite</a>
@@ -19,5 +23,5 @@ Além disso, o nodemon não consegue ''observar'' os arquivos marko, então, fei
 
 # Modificações
 
-Estou usando a versão mais recente do Marko, então a sintaxe mudou um pouco do projeto feito no curso. Fora algumas mudanças mínimas na sintaxe do javascript.
-Tirando isso, a aplicação é a mesma.
+Alterei bastante da aplicação desenvolvida no curso, sendo a principal diferença a organização dos arquivos, e a implementação de um sistema de controle de livros por usuário.
+Há uma página de cadastro de usuário, e cada usuário terá um controle dos seus livros, não existe uma rota principal com acesso a todos os livros.

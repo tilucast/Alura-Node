@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS livros (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     titulo TEXT NOT NULL, 
     preco REAL NOT NULL,
-    descricao TEXT DEFAULT ('') NOT NULL
+    descricao TEXT DEFAULT ('') NOT NULL,
+    usuario_id INTEGER NOT NULL
 )
 `;
 
@@ -34,27 +35,10 @@ const INSERIR_LIVRO_1 =
 INSERT INTO livros (
     titulo,
     preco,
-    descricao
-) SELECT 'Node na prática', 30.0, 'Como desenvolver com Node.' WHERE NOT EXISTS (SELECT * FROM livros WHERE titulo = 'Node na prática')
+    descricao,
+    usuario_id
+) SELECT 'Node na prática', 30.0, 'Como desenvolver com Node.', 1 WHERE NOT EXISTS (SELECT * FROM livros WHERE titulo = 'Node na prática')
 `;
-
-const INSERIR_LIVRO_2 = 
-`
-INSERT INTO livros (
-    titulo, 
-    preco,
-    descricao
-) SELECT 'JavaScript na prática', 40.0, 'Como desenvolver com JavaScript.' WHERE NOT EXISTS (SELECT * FROM livros WHERE titulo = 'JavaScript na prática')
-`;
-
-const INSERIR_LIVRO_3 = 
-`
-INSERT INTO livros (
-    titulo, preco, descricao
-) SELECT 'Design of Everyday Things', '50.0', 'Learn to think as a designer does.' WHERE NOT EXISTS (SELECT * FROM LIVROS WHERE TITULO = 'Design of Everyday Things')
-`
-
-let deleted = null
 
 bd.serialize(() => {
     bd.run("PRAGMA foreign_keys=ON");
@@ -62,19 +46,7 @@ bd.serialize(() => {
     bd.run(INSERIR_USUARIO_1);
     bd.run(LIVROS_SCHEMA);
     bd.run(INSERIR_LIVRO_1);
-    bd.run(INSERIR_LIVRO_2);
-    bd.run(INSERIR_LIVRO_3);
-    /*bd.run(`DELETE FROM livros `, (err) =>{
-        if (err)
-            return console.log(err)
-        console.log(`Query was executed successfully`)
-    }) */
-
-    bd.each("SELECT * FROM usuarios", (err, usuario) => {
-        console.log('Usuario: ');
-        console.log(usuario);
-    });
-});
+}); 
 
 process.on('SIGINT', () =>
     bd.close(() => {

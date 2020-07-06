@@ -3,20 +3,21 @@ module.exports = class BooksDao{
         this._db = require('../../config/database')
     }
 
-    getBooks(){
+    getBooks(usuarioId){
         return new Promise((resolve, reject) =>{
-            this._db.all('SELECT * FROM LIVROS', (err, result) => {
+            this._db.all(`SELECT DISTINCT LIVROS.id, titulo, preco, descricao FROM LIVROS INNER JOIN USUARIOS on
+            LIVROS.usuario_id = ?`, usuarioId , (err, result) => {
                 resolve(result)
                 reject(err)
             })
         })
     }
 
-    createBooks({titulo, preco, descricao}){
+    createBooks({titulo, preco, descricao}, usuarioId){
         return new Promise((resolve, reject) =>{
-            this._db.run(`INSERT INTO LIVROS ( titulo , preco , descricao)
-            values (?, ?, ?)`
-            , [titulo, preco, descricao], (err) =>{
+            this._db.run(`INSERT INTO LIVROS ( titulo , preco , descricao, usuario_id)
+            values (?, ?, ?, ?)`
+            , [titulo, preco, descricao, usuarioId], (err) =>{
 
                 if(!err)
                     return resolve(console.log(`Book was added successfully.`))
