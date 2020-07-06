@@ -1,8 +1,8 @@
 <h1>Node CRUD</h1>
-<img src="./img/1" align="center"></img>
-<img src="./img/2" align="center"></img>
-<img src="./img/3" align="center"></img>
-<img src="./img/4" align="center"></img>
+<img src="./img/1.png" align="center"></img>
+<img src="./img/2.png" align="center"></img>
+<img src="./img/3.png" align="center"></img>
+<img src="./img/4.png" align="center"></img>
 
 # Sobre o projeto
 
@@ -20,6 +20,14 @@ a aplicação na porta :3001.
 O nodemon ficará observando mudanças, então basta recarregar a aplicação que as mudanças serão aplicadas.
 
 Além disso, o nodemon não consegue ''observar'' os arquivos marko, então, feita alguma mudança neles, vá em qualquer arquivo javascript e recarregue a aplicação, só assim as mudanças serão aplicadas.
+
+# Observações
+
+Não vou upar o arquivo do banco de dados com o projeto. Após baixar e rodar pela primeira vez, o arquivo **data.db** será criado na pasta principal, contendo os registros do banco. 
+
+Lembre-se, no arquivo **database.js** estão contidas as configurações do banco, e lá está rodando o serialize do sqlite, tudo dentro dessa função é rodado sempre que a a aplicação recarregar, logo, caso você exclua o livro ou o usuário que já vem cadastrados por padrão, ao atualizar a aplicação, os mesmos serão cadastrados novamente. Para evitar este comportamento, comente a função ou a exclua, mas deixe a função rodar pelo menos uma vez para as tabelas serem criadas.
+
+Para mais detalhes, acesse a documentação do sqlite.
 
 # Modificações
 
